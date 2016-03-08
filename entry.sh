@@ -12,7 +12,8 @@ touch /var/run/pritunl.pid
 
 /bin/rm /var/run/pritunl.pid
 
-/usr/bin/pritunl --daemon --pidfile /var/run/pritunl.pid
+/usr/local/bin/dumb-init mongod --fork --logpath /var/log/mongodb.log &
+/usr/local/bin/dumb-init /usr/bin/pritunl start
 
 [ "$1" ] && exec "$@"
 
